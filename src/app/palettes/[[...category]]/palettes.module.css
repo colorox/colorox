@@ -1,0 +1,147 @@
+.layout {
+  width: 100%;
+}
+
+.header {
+  position: fixed;
+  left: 0;
+  top: 65px;
+  z-index: 400;
+  width: 100%;
+  grid-column: 1 / 3;
+  margin-bottom: 1rem;
+  border: 1px solid rgb(241, 241, 241);
+  background-color: white;
+  padding: 0 2rem;
+
+  border: 1px solid rgb(0, 64, 255);
+
+}
+
+.header-wrapper {
+  position: relative;
+  height: 70px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border: 1px solid red;
+}
+
+.search-icon {
+  display: flex;
+  margin-right: 0.5rem;
+}
+
+.search-form {
+  flex-grow: 1;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 0;
+  outline: 0;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.menu-btn {
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.menu-btn:hover {
+  background-color: rgb(249, 249, 249);
+}
+
+.sidebar {
+  position: fixed;
+  right: 0;
+  top: 135px;
+
+  
+  width: 250px;
+  height: 100vh;
+  overflow: auto;
+  border-right: 1px solid rgb(224, 224, 224);
+  padding-right: 1rem;
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+.sidebar__nav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgb(234, 234, 234);
+}
+
+.nav__item {
+  width: 100%;
+}
+
+.nav__link {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  font-size: 1rem;
+  padding: 0 0.875rem;
+  border-radius: 0.5rem;
+}
+
+.nav__link:hover {
+  background-color: rgb(243, 243, 243);
+}
+
+.tags {
+  flex-grow: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.tag__link {
+  font-size: 0.875rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 0.375rem;
+  color: rgb(116, 116, 116);
+}
+
+.tag__link:hover {
+  background-color: rgb(245, 245, 245);
+  color: black;
+}
+
+/* =========  ========== */
+.palette-grid {
+  position: relative;
+  top: 135px;
+  left: 0;
+
+  width: calc(100% - 250px);
+  min-height: 100vh;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  padding-inline: 1rem;
+}
+
+@media screen and (max-width: 1420px) {
+  .palette-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .palette-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -34,10 +34,18 @@ a {
   color: inherit;
 }
 
-.layout {
-  width: 100%;
-  padding-inline:1.5rem;
-  padding-top: 65px;
+input {
+  background-color: transparent;
 }
 
 
+
+.layout {
+  max-width: 1680px;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.main-content {
+  padding: 1rem;
+}

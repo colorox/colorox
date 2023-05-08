@@ -15,7 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={poppins.className}>
         <div className="layout">
           <Navbar />
-          {children}
+          <div className="main-content">{children}</div>
         </div>
       </body>
     </html>
