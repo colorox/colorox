@@ -23,9 +23,9 @@ function Palette({}: Props) {
       </div>
       <div className={css.palette__footer}>
         <button className={css.palette__like}>
-          <Heart size={18} strokeWidth={1.2} /> <span> 6,014</span>
+          <Heart size={16} strokeWidth={1.2} /> <span> 8,124 </span>
         </button>
-        <div className={css.palette__date}> 3 months </div>
+        <button className={css.palette__more}> <MoreHorizontal size={20} strokeWidth={1.5} /> </button>
       </div>
     </div>
   );
