@@ -13,9 +13,6 @@
   border: 1px solid rgb(241, 241, 241);
   background-color: white;
   padding: 0 2rem;
-
-  border: 1px solid rgb(0, 64, 255);
-
 }
 
 .header-wrapper {
@@ -24,7 +21,6 @@
   width: 100%;
   display: flex;
   align-items: center;
-  border: 1px solid red;
 }
 
 .search-icon {
@@ -120,12 +116,18 @@
 }
 
 /* =========  ========== */
+.layout-content {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 250px;
+}
+
 .palette-grid {
   position: relative;
   top: 135px;
   left: 0;
 
-  width: calc(100% - 250px);
+  width: 100%;
   min-height: 100vh;
 
   display: grid;

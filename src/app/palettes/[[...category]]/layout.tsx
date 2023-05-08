@@ -11,17 +11,20 @@ type Props = {
 function Layout({ children }: Props) {
   return (
     <div className={css.layout}>
-
       <div className={css.header}>
-        <div className={css['header-wrapper']}>
-          <div className={css['search-list']}> </div>
-          <div className={css['search-icon']}>
+        <div className={css["header-wrapper"]}>
+          <div className={css["search-list"]}> </div>
+          <div className={css["search-icon"]}>
             <Search size={20} />
           </div>
-          <form className={css['search-form']}> 
-            <input className={css['search-input']} type="text" placeholder="Search with color, styles or hex values..." />
+          <form className={css["search-form"]}>
+            <input
+              className={css["search-input"]}
+              type="text"
+              placeholder="Search with color, styles or hex values..."
+            />
           </form>
-          <button className={css['menu-btn']}> 
+          <button className={css["menu-btn"]}>
             <Menu size={20} strokeWidth={1.5} />
           </button>
         </div>
@@ -64,7 +67,7 @@ function Layout({ children }: Props) {
           })}
         </div>
       </div>
-      {children}
+      <div className={css["layout-content"]}>{children}</div>
     </div>
   );
 }
