@@ -1,4 +1,5 @@
 import Navbar from "./components/Navbar";
+import Toast from "./components/Toast";
 import "./globals.css";
 import { Poppins } from "next/font/google";
 
@@ -16,6 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className="layout">
           <Navbar />
           {children}
+          <Toast />
         </div>
       </body>
     </html>
