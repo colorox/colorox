@@ -1,3 +1,5 @@
+'use client'
+
 import React from "react";
 import css from "./palette.module.css";
 import { Heart, MoreHorizontal } from "react-feather";
@@ -5,6 +7,14 @@ import { Heart, MoreHorizontal } from "react-feather";
 type Props = {};
 
 function Palette({}: Props) {
+  const likePalette = () => {
+
+  }
+
+  const copyColor = () => {
+
+  }
+
   return (
     <div className={css.palette}>
       <div className={css.palette__colors}>
