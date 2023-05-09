@@ -8,18 +8,15 @@ type Props = {};
 function Palette({}: Props) {
   const likePalette = () => {};
 
-  const notify = () => {
-    customToast("Copied to clipboard");
-  };
-
-  const copyColor = () => {
-    
+  const copyColor = (color: string) => {
+    navigator.clipboard.writeText(color);
+    customToast("Color copied to the clipboard !");
   };
 
   return (
     <div className={css.palette}>
       <div className={css.palette__colors}>
-        <div className={css.palette__color} onClick={notify}>
+        <div className={css.palette__color} onClick={() => copyColor('FCC8D1')}>
           <div className={css.palette__hex}> FCC8D1 </div>
         </div>
         <div className={css.palette__color}>

@@ -5,7 +5,7 @@ import { Check } from "react-feather";
 export function customToast(text: string) {
   toast(<ToastContent text={text} />, {
     duration: 3000,
-    position: "top-center",
+    position: "bottom-center",
     className: "toast",
     // Aria
     ariaProps: {

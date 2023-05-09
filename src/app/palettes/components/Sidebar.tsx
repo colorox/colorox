@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import css from "./sidebar.module.css";
-import { Star, TrendingUp, Circle, Heart } from "react-feather";
+import { Star, TrendingUp, Circle, Heart, ChevronLeft } from "react-feather";
 import { tags } from "../data";
 import { usePaletteContext } from "../context";
 
@@ -12,11 +12,14 @@ type Props = {};
 
 function Sidebar({}: Props) {
   const pathname = usePathname();
-  const { isSidebar } = usePaletteContext();
+  const { isSidebar, toggleSidebar } = usePaletteContext();
 
   return (
     <div className={`${css.sidebar} ${!isSidebar ? css["sidebar--closed"] : ""}`}>
       <div className={css.sidebar__wrapper}>
+        <div className={css.sidebar__header}> 
+          <button className={css.sidebar__close} onClick={toggleSidebar}> <ChevronLeft size={18} /> </button>
+        </div>
         <div className={`${css.sidebar__nav} ${css.nav}`}>
           <div className={css.nav__item}>
             <Link
