@@ -10,10 +10,11 @@ type Props = {};
 function Header({}: Props) {
   const [searchList, setSearchList] = useState<string[]>([]);
   const [text, setText] = useState("");
-  const { isSidebar } = usePaletteContext();
   const headerRef = useRef<HTMLDivElement>(null);
   const [isSticky, setSticky] = useState(false);
 
+  const { isSidebar, toggleSidebar } = usePaletteContext();
+  
   useEffect(() => {
     window.onscroll = () => {
       if (headerRef.current && headerRef.current.getBoundingClientRect().top === 0) {
@@ -75,7 +76,7 @@ function Header({}: Props) {
             onChange={(e) => setText(e.target.value.trim())}
           />
         </form>
-        <button className={`${css["menu-btn"]} ${isSidebar ? css["menu-btn--close"] : ""}`} onClick={() => {}}>
+        <button className={`${css["menu-btn"]} ${isSidebar ? css["menu-btn--close"] : ""}`} onClick={() => toggleSidebar()}>
           <Menu size={20} strokeWidth={1.5} />
         </button>
       </div>

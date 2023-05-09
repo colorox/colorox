@@ -13,7 +13,7 @@ function Layout({ children }: Props) {
     <div className={css.layout}>
       <Provider>
         <Header />
-        <div className={css["page-layout"]}>
+        <div className={`${css["page-layout"]}`}>
           {children}
           <Sidebar />
         </div>

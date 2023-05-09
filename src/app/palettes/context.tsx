@@ -4,9 +4,10 @@ import { ReactNode, createContext, useState, Dispatch, SetStateAction, useContex
 
 type ContextType = {
   isSidebar: boolean;
+  toggleSidebar: () => void;
 };
 
-const PaletteContext = createContext<ContextType>({ isSidebar: true });
+const PaletteContext = createContext<ContextType>({ isSidebar: true, toggleSidebar: () => {} });
 
 type Props = {
   children: ReactNode;
@@ -19,7 +20,7 @@ export function Provider({ children }: Props) {
     setSidebar(!isSidebar);
   };
 
-  return <PaletteContext.Provider value={{ isSidebar }}>{children}</PaletteContext.Provider>;
+  return <PaletteContext.Provider value={{ isSidebar, toggleSidebar }}>{children}</PaletteContext.Provider>;
 }
 
 export function usePaletteContext() {

@@ -3,10 +3,12 @@
 import React, { useEffect, useState } from "react";
 import css from "./palette.module.css";
 import Palette from "./Palette";
+import { usePaletteContext } from "../context";
 
 type Props = {};
 
 function PaletteGrid({}: Props) {
+  const {isSidebar} = usePaletteContext();
   const date = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
   const [palettes, setPalettes] = useState(date);
 
@@ -28,7 +30,7 @@ function PaletteGrid({}: Props) {
   }, [palettes]);
 
   return (
-    <div className={css["palette-grid"]}>
+    <div className={`${css["palette-grid"]} ${!isSidebar ? css['palette-grid--full'] : ''}`}>
       {palettes.map((palette, index) => {
         return <Palette key={index} />;
       })}
