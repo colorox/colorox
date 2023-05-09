@@ -13,8 +13,10 @@ function Layout({ children }: Props) {
     <div className={css.layout}>
       <Provider>
         <Header />
-        <Sidebar />
-        {children}
+        <div className={css["page-layout"]}>
+          {children}
+          <Sidebar />
+        </div>
       </Provider>
     </div>
   );

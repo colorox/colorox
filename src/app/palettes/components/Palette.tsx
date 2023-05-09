@@ -1,5 +1,3 @@
-'use client'
-
 import React from "react";
 import css from "./palette.module.css";
 import { Heart, MoreHorizontal } from "react-feather";

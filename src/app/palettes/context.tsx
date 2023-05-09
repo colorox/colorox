@@ -4,23 +4,22 @@ import { ReactNode, createContext, useState, Dispatch, SetStateAction, useContex
 
 type ContextType = {
   isSidebar: boolean;
-  toggleSidebar: () => void;
 };
 
-const PaletteContext = createContext<ContextType>({ isSidebar: true, toggleSidebar: () => {} });
+const PaletteContext = createContext<ContextType>({ isSidebar: true });
 
 type Props = {
   children: ReactNode;
 };
 
 export function Provider({ children }: Props) {
-  const [isSidebar, setSidebar] = useState(false);
+  const [isSidebar, setSidebar] = useState(true);
 
   const toggleSidebar = () => {
     setSidebar(!isSidebar);
   };
 
-  return <PaletteContext.Provider value={{ isSidebar, toggleSidebar }}>{children}</PaletteContext.Provider>;
+  return <PaletteContext.Provider value={{ isSidebar }}>{children}</PaletteContext.Provider>;
 }
 
 export function usePaletteContext() {

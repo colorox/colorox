@@ -10,12 +10,6 @@ function Navbar({}: Props) {
       <div className={css.navbar__logo}>
         <Link href={"/"}> Colorox </Link>
       </div>
-      <form className={css.search}>
-        <div className={css.search__icon}>
-           <Search size={18} />     
-        </div>
-        <input className={css.search__input} type="text" placeholder="Search palettes" />
-      </form>
       <nav className={`${css.navbar__nav} ${css.nav}`}>
         <div className={css.nav__item}>
           <Link className={css.nav__link} href={"/"}>
@@ -37,5 +31,18 @@ function Navbar({}: Props) {
     </div>
   );
 }
+
+
+const Searchbar = () => {
+  return (
+    <form className={css.search}>
+    <div className={css.search__icon}>
+       <Search size={18} />     
+    </div>
+    <input className={css.search__input} type="text" placeholder="Search palettes" />
+  </form>
+  )
+}
+
 
 export default Navbar;

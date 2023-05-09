@@ -1,26 +1,13 @@
 .layout {
   width: 100%;
+  min-height: 120vh;
 }
 
 /* =========  ========== */
-.layout-content {
+.page-layout {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 280px;
-}
-
-.palette-grid {
-  position: relative;
-  top: 135px;
-  left: 0;
-
-  width: 100%;
-  min-height: 100vh;
-
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-  padding-inline: 1rem;
+  grid-template-columns: 1fr 300px;
 }
 
 @media screen and (max-width: 1420px) {

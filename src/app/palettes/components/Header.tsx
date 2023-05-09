@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FormEvent, useState, useEffect } from "react";
+import React, { FormEvent, useState, useEffect, useRef } from "react";
 import css from "./header.module.css";
 import { Search, Menu, X } from "react-feather";
 import { usePaletteContext } from "../context";
@@ -10,7 +10,19 @@ type Props = {};
 function Header({}: Props) {
   const [searchList, setSearchList] = useState<string[]>([]);
   const [text, setText] = useState("");
-  const { isSidebar, toggleSidebar } = usePaletteContext();
+  const { isSidebar } = usePaletteContext();
+  const headerRef = useRef<HTMLDivElement>(null);
+  const [isSticky, setSticky] = useState(false);
+
+  useEffect(() => {
+    window.onscroll = () => {
+      if (headerRef.current && headerRef.current.getBoundingClientRect().top === 0) {
+        setSticky(true);
+      } else {
+        setSticky(false);
+      }
+    };
+  }, []);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -30,8 +42,13 @@ function Header({}: Props) {
   };
 
   return (
-    <div className={css.header}>
+    <div className={`${css.header} ${isSticky ? css["header--sticky"] : ""}`} ref={headerRef}>
       <div className={css["header-wrapper"]}>
+        
+        <div className={css.header__logo}>
+           Colorox
+        </div>
+
         <div className={css["search-list"]}>
           {searchList.map((text, index) => {
             return (
@@ -46,7 +63,7 @@ function Header({}: Props) {
         </div>
         {searchList.length === 0 && (
           <div className={css["search-icon"]}>
-            <Search size={20} />
+            <Search size={20} strokeWidth={1.5} />
           </div>
         )}
         <form className={css["search-form"]} onSubmit={handleSubmit}>
@@ -58,10 +75,7 @@ function Header({}: Props) {
             onChange={(e) => setText(e.target.value.trim())}
           />
         </form>
-        <button
-          className={`${css["menu-btn"]} ${isSidebar ? css["menu-btn--close"] : ""}`}
-          onClick={() => toggleSidebar()}
-        >
+        <button className={`${css["menu-btn"]} ${isSidebar ? css["menu-btn--close"] : ""}`} onClick={() => {}}>
           <Menu size={20} strokeWidth={1.5} />
         </button>
       </div>
