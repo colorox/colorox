@@ -1,8 +1,15 @@
-
 .toast {
+    padding: 0.75rem !important;
+    background-color: black !important;
+    border-radius: 99em !important;
+    overflow: hidden !important;
+}
+
+.toast__content {
     max-width: 500px;
     border-radius: 99em;
     display: flex;
+    align-items: center;
     gap: 0.75rem;
 }
 

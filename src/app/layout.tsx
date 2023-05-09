@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import Navbar from "./components/Navbar";
 import Toast from "./components/Toast";
 import "./globals.css";
@@ -16,6 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={poppins.className}>
         <div className="layout">
           <Navbar />
+          <Toaster />
           {children}
           <Toast />
         </div>

@@ -39,7 +39,6 @@ input {
 }
 
 
-
 .layout {
   max-width: 1680px;
   width: 100%;
@@ -49,3 +48,4 @@ input {
 .main-content {
   padding: 1rem;
 }
+
