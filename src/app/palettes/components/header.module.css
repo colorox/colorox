@@ -101,3 +101,14 @@
 .menu-btn--close {
   transform: rotateZ(90deg);
 }
+
+@media screen and (max-width: 760px) {
+  .header {
+    padding-inline: 1rem;
+  }
+  .header__logo {
+    display: none;
+  }
+}
+
+
