@@ -12,9 +12,13 @@
     "@types/node": "20.1.0",
     "@types/react": "18.2.6",
     "@types/react-dom": "18.2.4",
+    "chroma-js": "^2.4.2",
     "client-only": "^0.0.1",
+    "color-name": "^2.0.0",
+    "color-name-list": "^10.7.0",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.1",
+    "nearest-color": "^0.4.4",
     "next": "13.4.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -22,5 +26,8 @@
     "react-hot-toast": "^2.4.1",
     "server-only": "^0.0.1",
     "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "@types/color-name": "^1.1.1"
   }
 }

@@ -27,6 +27,11 @@ function Navbar({}: Props) {
             Sign up
           </Link>
         </div>
+        <div className={css.nav__item}>
+          <Link className={css.nav__account} href={"/"}>
+            A
+          </Link>
+        </div>
       </nav>
     </div>
   );
