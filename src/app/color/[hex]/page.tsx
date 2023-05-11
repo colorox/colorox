@@ -33,24 +33,23 @@ async function Page({ params }: Props) {
   const data = await getData(hex);
 
   if (data === "Invalid hex value") {
-     throw new Error('Invalid hex value')
+    throw new Error("Invalid hex value");
   }
 
   const color = Color("#" + hex);
   const hexString = color.hex().replace("#", "");
   const rgbString = color.rgb().string().replace("rgb(", "").replace(")", "");
-  const hslString = color.hsl().string().replace("hsl(", "").replace(")", "");
+  const hslString = color.hsl().string(0).replace("hsl(", "").replace(")", "");
 
   const shades = findTones(color, "#000", 5);
   const tints = findTones(color, "#fff", 5);
 
   return (
     <div>
-      <div className={css.main}></div>
       {/* color */}
       <div className={css.color}>
         <div className={css.color__fill} style={{ backgroundColor: color.hex() }}>
-          <h1 style={{ color: getIconColor(data.value) }}> {data.name} </h1>
+          <h1 style={{ color: color.isLight() ? "black" : "white" }}> {data.name} </h1>
         </div>
         <div className={css.color__codes}>
           <ColorCode type="hex" value={hexString} />
