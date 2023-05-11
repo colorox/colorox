@@ -36,6 +36,7 @@ a {
 
 input {
   background-color: transparent;
+  font-family: inherit;
 }
 
 

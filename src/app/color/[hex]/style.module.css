@@ -154,7 +154,6 @@
   background-color: rgb(245, 245, 245);
 }
 
-
 /* ========== error page ========= */
 .error {
   height: 300px;
@@ -165,4 +164,56 @@
 
 .error__message {
   font-size: 1.125rem;
+}
+
+/* ========= color picker style ======== */
+.picker {
+  width: 400px;
+  position: relative;
+  margin-bottom: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.picker__input {
+  width: 100%;
+  padding: 0.65rem 1.5rem;
+  border-radius: 99em;
+  font-size: 1.125rem;
+  border: 1px solid rgb(201, 201, 201);
+}
+
+.picker__input:focus {
+  outline-offset: 3px;
+  outline: 3px solid rgb(126, 126, 255);
+}
+
+.picker__wrapper {
+  position: absolute;
+  right: 10px;
+  
+  height: 30px;
+  width: 30px;
+  border-radius: 99em;
+  overflow: hidden;
+
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 0 1px rgb(221, 221, 221);
+}
+
+.picker__wrapper img {
+  display: none;
+}
+
+.picker__color {
+  height: 100%;
+  width: 100%;
+  right: 1rem;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.picker__color::before {
+  border: 5px solid red;
 }

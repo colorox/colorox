@@ -3,8 +3,8 @@ import { Maximize2 } from "react-feather";
 import css from "./style.module.css";
 import ColorCode from "./ColorCode";
 import ColorItem from "./ColorItem";
-import { getIconColor } from "@/app/utils/color";
 import Color from "color";
+import ColorPicker from "./ColorPicker";
 
 type Props = {
   params: any;
@@ -46,6 +46,8 @@ async function Page({ params }: Props) {
 
   return (
     <div>
+      <ColorPicker />
+
       {/* color */}
       <div className={css.color}>
         <div className={css.color__fill} style={{ backgroundColor: color.hex() }}>
