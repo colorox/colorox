@@ -16,6 +16,14 @@
 
 .color__fill {
   height: 400px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.75rem;
+  color: white;
+
   border-radius: 1rem;
   margin-bottom: 2rem;
   background: red;
@@ -52,6 +60,7 @@
 }
 
 .color__copy span:last-child {
+  font-size: 0.875rem;
   color: rgb(158, 158, 158);
 }
 
@@ -138,4 +147,17 @@
 
 .tint__link:hover {
   background-color: rgb(245, 245, 245);
+}
+
+
+/* ========== error page ========= */
+.error {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error__message {
+  font-size: 1.125rem;
 }

@@ -1,23 +1,27 @@
-'use client'
+"use client";
 
 import React from "react";
+import Color from "color";
 import css from "./style.module.css";
 import { Copy } from "react-feather";
 import { customToast } from "@/app/toast";
 
-type Props = {};
+type Props = {
+  type: string;
+  value: string;
+};
 
-function ColorCode({}: Props) {
-  const copyColor = (text: string) => {
-    navigator.clipboard.writeText(text);
+function ColorCode({ type, value }: Props) {
+  const copyColor = () => {
+    navigator.clipboard.writeText(value);
     customToast("Color copied to the clipboard !");
   };
 
   return (
-    <div className={css.color__code} onClick={() => copyColor("242F42")}>
+    <div className={css.color__code} onClick={copyColor}>
       <div className={css.color__copy}>
-        <span> HEX </span>
-        <span> 242F42 </span>
+        <span> {type} </span>
+        <span>{value} </span>
       </div>
       <button className={css.color__btn}>
         <Copy size={16} strokeWidth={1.6} />

@@ -1,9 +1,9 @@
-import { getColorName, getTextColor } from "@/app/utils/color";
 import { NextResponse } from "next/server";
+import { getColorName } from "@/app/utils/color";
 
-export async function GET(request: Request) {
-  const color = getColorName("#242424")
-  return NextResponse.json(color.name)
+export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const hex = "#" + searchParams.get("hex")?.toString();
+  const color = getColorName(hex);
+  return NextResponse.json(color);
 }
-
-

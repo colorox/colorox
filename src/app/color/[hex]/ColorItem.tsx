@@ -3,7 +3,6 @@
 import React from "react";
 import css from "./style.module.css";
 import { customToast } from "@/app/toast";
-import namedColors from 'color-name-list';
 
 
 type Props = {};
