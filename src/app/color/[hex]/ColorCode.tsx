@@ -1,7 +1,5 @@
 "use client";
 
-import React from "react";
-import Color from "color";
 import css from "./style.module.css";
 import { Copy } from "react-feather";
 import { customToast } from "@/app/toast";
