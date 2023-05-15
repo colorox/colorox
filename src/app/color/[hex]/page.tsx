@@ -3,109 +3,109 @@ import { Maximize2 } from "react-feather";
 import css from "./style.module.css";
 import ColorCode from "./ColorCode";
 import ColorItem from "./ColorItem";
-import Color from "color";
 import ColorPicker from "./ColorPicker";
+
+import { getColorName } from "@/app/utils/color";
+
+import { colord, extend } from "colord";
+import mixPlugin from "colord/plugins/mix";
+import harmoniesPlugin from "colord/plugins/harmonies";
+extend([mixPlugin, harmoniesPlugin]);
 
 type Props = {
   params: any;
 };
 
-async function getData(hex: string) {
-  const res = await fetch(`http://localhost:3000/api/color?hex=${hex}`);
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-  return res.json();
-}
+// function findTones(color: Color, mixColor: string, n: number) {
+//   const shades: string[] = [];
+//   const factor = 1 / n;
+//   for (let i = 0; i <= n; i++) {
+//     const shade = color.mix(Color(mixColor), factor * i).hex();
+//     shades.push(shade);
+//   }
+//   return shades;
+// }
 
-function findTones(color: Color, mixColor: string, n: number) {
-  const shades: string[] = [];
-  const factor = 1 / n;
-  for (let i = 0; i <= n; i++) {
-    const shade = color.mix(Color(mixColor), factor * i).hex();
-    shades.push(shade);
-  }
-  return shades;
-}
+// function findHues(color: Color, n: number) {
+//   const hues: string[] = [];
+//   const factor = 10;
+//   for (let i = -7; i <= 7; i++) {
+//     const hue = color.rotate(factor * i).hex();
+//     hues.push(hue);
+//   }
+//   return hues;
+// }
 
-function findHues(color: Color, n: number) {
-  const hues: string[] = [];
-  const factor = 10;
-  for (let i = -7; i <= 7; i++) {
-    const hue = color.rotate(factor * i).hex();
-    hues.push(hue);
-  }
-  return hues;
-}
+// function findComplement(color: Color) {
+//   return color.rotate(180);
+// }
 
-function findComplement(color: Color) {
-  return color.rotate(180);
-}
+// function findAnalogous(color: Color) {
+//   const arr: Color[] = [];
+//   arr.push(color.rotate(-40));
+//   arr.push(color.rotate(0));
+//   arr.push(color.rotate(40));
+//   return arr;
+// }
 
-function findAnalogous(color: Color) {
-  const arr: Color[] = [];
-  arr.push(color.rotate(-40));
-  arr.push(color.rotate(0));
-  arr.push(color.rotate(40));
-  return arr;
-}
+// function findTriadic(color: Color) {
+//   const arr: Color[] = [];
+//   arr.push(color.rotate(0));
+//   arr.push(color.rotate(120));
+//   arr.push(color.rotate(240));
+//   return arr;
+// }
 
-function findTriadic(color: Color) {
-  const arr: Color[] = [];
-  arr.push(color.rotate(0));
-  arr.push(color.rotate(120));
-  arr.push(color.rotate(240));
-  return arr;
-}
+// function findTetradic(color: Color) {
+//   const arr: Color[] = [];
+//   arr.push(color.rotate(0));
+//   arr.push(color.rotate(60));
+//   arr.push(color.rotate(180));
+//   arr.push(color.rotate(240));
+//   return arr;
+// }
 
-function findTetradic(color: Color) {
-  const arr: Color[] = [];
-  arr.push(color.rotate(0));
-  arr.push(color.rotate(60));
-  arr.push(color.rotate(180));
-  arr.push(color.rotate(240));
-  return arr;
-}
+// function findSplitComplement(color: Color) {
+//   const arr: Color[] = [];
+//   arr.push(color.rotate(0));
+//   arr.push(color.rotate(160));
+//   arr.push(color.rotate(200));
+//   return arr;
+// }
 
-function findSplitComplement(color: Color) {
-  const arr: Color[] = [];
-  arr.push(color.rotate(0));
-  arr.push(color.rotate(160));
-  arr.push(color.rotate(200));
-  return arr;
-}
-
-function findSquare(color: Color) {
-  const arr: Color[] = [];
-  arr.push(color.rotate(0));
-  arr.push(color.rotate(90));
-  arr.push(color.rotate(180));
-  arr.push(color.rotate(270));
-  return arr;
-}
+// function findSquare(color: Color) {
+//   const arr: Color[] = [];
+//   arr.push(color.rotate(0));
+//   arr.push(color.rotate(90));
+//   arr.push(color.rotate(180));
+//   arr.push(color.rotate(270));
+//   return arr;
+// }
 
 async function Page({ params }: Props) {
   const { hex } = params;
-  const data = await getData(hex);
+  const color = colord("#" + hex);
 
-  if (data === "Invalid hex value") {
-    throw new Error("Invalid hex value");
+  if (!color.isValid()) {
+    throw new Error("Invalid Color");
   }
 
-  const color = Color("#" + hex);
-  const hexString = color.hex().replace("#", "");
-  const rgbString = color.rgb().string().replace("rgb(", "").replace(")", "");
-  const hslString = color.hsl().string(0).replace("hsl(", "").replace(")", "");
+  const colorName = getColorName(color.toHex()).name;
+  const hexString = color.toHex().replace("#", "");
+  const rgbString = color.toRgbString().replace("rgb(", "").replace(")", "");
+  const hslString = color.toHslString().replace("hsl(", "").replace(")", "");
 
-  const shades = findTones(color, "black", 7);
-  const tints = findTones(color, "white", 7);
-  const tones = findTones(color, "grey", 7);
-  const hues = findHues(color, 14);
-  const analogous = findAnalogous(color);
-  const triadic = findTriadic(color);
-  const tetradic = findTetradic(color);
-  const splitComplements = findSplitComplement(color);
-  const square = findSquare(color);
+  const tints = color.tints(7).map((c) => c.toHex());
+  const shades = color.shades(7).map((c) => c.toHex());
+  const tones = color.tones(7).map((c) => c.toHex());
+
+  const analogous = color.harmonies("analogous").map((c) => c.toHex());
+  const complementary = color.harmonies("complementary").map((c) => c.toHex());
+  const doubleSplitComplementary = color.harmonies("double-split-complementary").map((c) => c.toHex());
+  const square = color.harmonies("rectangle").map((c) => c.toHex());
+  const splitComplements = color.harmonies("split-complementary").map((c) => c.toHex());
+  const tetradic = color.harmonies("tetradic").map((c) => c.toHex());
+  const triadic = color.harmonies("triadic").map((c) => c.toHex());
 
   return (
     <div>
@@ -113,8 +113,8 @@ async function Page({ params }: Props) {
 
       {/* color */}
       <div className={css.color}>
-        <div className={css.color__fill} style={{ backgroundColor: color.hex() }}>
-          <h1 style={{ color: color.isLight() ? "black" : "white" }}> {data.name} </h1>
+        <div className={css.color__fill} style={{ backgroundColor: color.toHex() }}>
+          <h1 style={{ color: color.isLight() ? "black" : "white" }}> {colorName} </h1>
         </div>
         <div className={css.color__codes}>
           <ColorCode type="hex" value={hexString} />
@@ -168,21 +168,6 @@ async function Page({ params }: Props) {
         </div>
       </div>
 
-      {/* Hues */}
-      <div className={css.tint}>
-        <header className={css.tint__header}>
-          <div className={css.tint__title}> Hues </div>
-          <Link href={""} className={css.tint__link}>
-            <Maximize2 size={14} strokeWidth={1.5} />
-          </Link>
-        </header>
-        <div className={css.tint__list}>
-          {hues.map((hue, index) => (
-            <ColorItem color={hue} key={index} />
-          ))}
-        </div>
-      </div>
-
       {/* Complementary */}
       <div className={css.tint}>
         <header className={css.tint__header}>
@@ -192,8 +177,9 @@ async function Page({ params }: Props) {
           </Link>
         </header>
         <div className={css.tint__list}>
-          <ColorItem color={color.hex()} key={0} />
-          <ColorItem color={findComplement(color).hex()} key={0} />
+          {complementary.map((color, index) => (
+            <ColorItem color={color} key={0} />
+          ))}
         </div>
       </div>
 
@@ -207,7 +193,7 @@ async function Page({ params }: Props) {
         </header>
         <div className={css.tint__list}>
           {analogous.map((color, index) => (
-            <ColorItem color={color.hex()} key={index} />
+            <ColorItem color={color} key={index} />
           ))}
         </div>
       </div>
@@ -222,7 +208,7 @@ async function Page({ params }: Props) {
         </header>
         <div className={css.tint__list}>
           {triadic.map((color, index) => (
-            <ColorItem color={color.hex()} key={index} />
+            <ColorItem color={color} key={index} />
           ))}
         </div>
       </div>
@@ -237,7 +223,7 @@ async function Page({ params }: Props) {
         </header>
         <div className={css.tint__list}>
           {tetradic.map((color, index) => (
-            <ColorItem color={color.hex()} key={index} />
+            <ColorItem color={color} key={index} />
           ))}
         </div>
       </div>
@@ -252,7 +238,22 @@ async function Page({ params }: Props) {
         </header>
         <div className={css.tint__list}>
           {splitComplements.map((color, index) => (
-            <ColorItem color={color.hex()} key={index} />
+            <ColorItem color={color} key={index} />
+          ))}
+        </div>
+      </div>
+
+      {/* double Split Complementary */}
+      <div className={css.tint}>
+        <header className={css.tint__header}>
+          <div className={css.tint__title}> Double Split Complementary </div>
+          <Link href={""} className={css.tint__link}>
+            <Maximize2 size={14} strokeWidth={1.5} />
+          </Link>
+        </header>
+        <div className={css.tint__list}>
+          {doubleSplitComplementary.map((color, index) => (
+            <ColorItem color={color} key={index} />
           ))}
         </div>
       </div>
@@ -267,7 +268,7 @@ async function Page({ params }: Props) {
         </header>
         <div className={css.tint__list}>
           {square.map((color, index) => (
-            <ColorItem color={color.hex()} key={index} />
+            <ColorItem color={color} key={index} />
           ))}
         </div>
       </div>

@@ -4,6 +4,7 @@ import { ChangeEvent, useEffect, useRef, useState } from "react";
 import css from "./style.module.css";
 import Color from "color";
 import { useRouter } from "next/navigation";
+import { Zap } from "react-feather";
 
 type Props = {};
 
@@ -86,25 +87,31 @@ function ColorPicker({}: Props) {
   };
 
   return (
-    <div className={css.picker}>
-      <input
-        className={css.picker__input}
-        type="text"
-        value={value}
-        placeholder={value}
-        onChange={handleTextInput}
-        onBlur={handleTextBlur}
-      />
-      <div className={css.picker__wrapper} style={{ backgroundColor: color.hex() }}>
+    <div className={css.topbar}>
+      <div className={css.picker}>
         <input
-          className={css.picker__color}
-          ref={colorRef}
-          type="color"
-          value={color.hex()}
-          onChange={handleColorInput}
-          onBlur={handleColorInputBlur}
+          className={css.picker__input}
+          type="text"
+          value={value}
+          placeholder={value}
+          onChange={handleTextInput}
+          onBlur={handleTextBlur}
         />
+        <div className={css.picker__wrapper} style={{ backgroundColor: color.hex() }}>
+          <input
+            className={css.picker__color}
+            ref={colorRef}
+            type="color"
+            value={color.hex()}
+            onChange={handleColorInput}
+            onBlur={handleColorInputBlur}
+          />
+        </div>
       </div>
+      {/* random color */}
+      <button className={css.random__btn}>
+        <Zap size={18} strokeWidth={1.2} />
+      </button>
     </div>
   );
 }

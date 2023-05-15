@@ -167,10 +167,27 @@
 }
 
 /* ========= color picker style ======== */
+.topbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.random__btn {
+  height: 45px;
+  width: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(215, 215, 215);
+  border-radius: 99em;
+}
+
 .picker {
   width: 400px;
   position: relative;
-  margin-bottom: 2rem;
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
@@ -192,7 +209,7 @@
 .picker__wrapper {
   position: absolute;
   right: 10px;
-  
+
   height: 30px;
   width: 30px;
   border-radius: 99em;
