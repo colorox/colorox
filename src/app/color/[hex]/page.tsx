@@ -3,7 +3,7 @@ import { Maximize2 } from "react-feather";
 import css from "./style.module.css";
 import ColorCode from "./ColorCode";
 import ColorItem from "./ColorItem";
-import ColorPicker from "./ColorPicker";
+import Main from "./Main";
 
 import { getColorName } from "@/app/utils/color";
 
@@ -104,7 +104,7 @@ async function Page({ params }: Props) {
 
   return (
     <div>
-      <ColorPicker hex={"#" + hex} />
+      <Main hex={"#" + hex} />
 
       {/* tints */}
       <div className={css.tint}>
@@ -161,7 +161,7 @@ async function Page({ params }: Props) {
         </header>
         <div className={css.tint__list}>
           {complementary.map((color, index) => (
-            <ColorItem color={color} key={0} />
+            <ColorItem color={color} key={index} />
           ))}
         </div>
       </div>

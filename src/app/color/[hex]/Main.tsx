@@ -57,9 +57,14 @@ type Props = {
 };
 
 function ColorPicker({ hex }: Props) {
-  const [value, setValue] = useState(hex);
+  const [value, setValue] = useState<string>(hex);
   const [color, setColor] = useState<Colord>(colord(hex));
   const colorRef = useRef<HTMLInputElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const router = useRouter();
 
@@ -111,14 +116,16 @@ function ColorPicker({ hex }: Props) {
             onBlur={handleTextBlur}
           />
           <div className={css.picker__wrapper} style={{ backgroundColor: color.toHex() }}>
-            <input
-              className={css.picker__color}
-              ref={colorRef}
-              type="color"
-              value={color.toHex()}
-              onChange={handleColorInput}
-              onBlur={handleColorInputBlur}
-            />
+            {mounted && (
+              <input
+                className={css.picker__color}
+                ref={colorRef}
+                type="color"
+                value={color.toHex()}
+                onChange={handleColorInput}
+                onBlur={handleColorInputBlur}
+              />
+            )}
           </div>
         </div>
         {/* random color */}
