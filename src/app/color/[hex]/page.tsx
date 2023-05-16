@@ -90,11 +90,6 @@ async function Page({ params }: Props) {
     throw new Error("Invalid Color");
   }
 
-  const colorName = getColorName(color.toHex()).name;
-  const hexString = color.toHex().replace("#", "");
-  const rgbString = color.toRgbString().replace("rgb(", "").replace(")", "");
-  const hslString = color.toHslString().replace("hsl(", "").replace(")", "");
-
   const tints = color.tints(7).map((c) => c.toHex());
   const shades = color.shades(7).map((c) => c.toHex());
   const tones = color.tones(7).map((c) => c.toHex());
@@ -110,18 +105,6 @@ async function Page({ params }: Props) {
   return (
     <div>
       <ColorPicker hex={"#" + hex} />
-
-      {/* color */}
-      <div className={css.color}>
-        <div className={css.color__fill} style={{ backgroundColor: color.toHex() }}>
-          <h1 style={{ color: color.isLight() ? "black" : "white" }}> {colorName} </h1>
-        </div>
-        <div className={css.color__codes}>
-          <ColorCode type="hex" value={hexString} />
-          <ColorCode type="rgb" value={rgbString} />
-          <ColorCode type="hsl" value={hslString} />
-        </div>
-      </div>
 
       {/* tints */}
       <div className={css.tint}>

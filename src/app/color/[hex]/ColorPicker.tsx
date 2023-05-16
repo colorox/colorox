@@ -6,6 +6,8 @@ import Color from "color";
 import { useRouter } from "next/navigation";
 import { Zap } from "react-feather";
 import { Colord, colord, random } from "colord";
+import ColorCode from "./ColorCode";
+import { getColorName } from "@/app/utils/color";
 
 function isValidHex(val: string) {
   if (val.length === 0) return false;
@@ -96,32 +98,48 @@ function ColorPicker({ hex }: Props) {
   };
 
   return (
-    <div className={css.topbar}>
-      <div className={css.picker}>
-        <input
-          className={css.picker__input}
-          type="text"
-          value={value}
-          placeholder={value}
-          onChange={handleTextInput}
-          onBlur={handleTextBlur}
-        />
-        <div className={css.picker__wrapper} style={{ backgroundColor: color.toHex() }}>
+    <>
+      {/* topbar */}
+      <div className={css.topbar}>
+        <div className={css.picker}>
           <input
-            className={css.picker__color}
-            ref={colorRef}
-            type="color"
-            value={color.toHex()}
-            onChange={handleColorInput}
-            onBlur={handleColorInputBlur}
+            className={css.picker__input}
+            type="text"
+            value={value}
+            placeholder={value}
+            onChange={handleTextInput}
+            onBlur={handleTextBlur}
           />
+          <div className={css.picker__wrapper} style={{ backgroundColor: color.toHex() }}>
+            <input
+              className={css.picker__color}
+              ref={colorRef}
+              type="color"
+              value={color.toHex()}
+              onChange={handleColorInput}
+              onBlur={handleColorInputBlur}
+            />
+          </div>
+        </div>
+        {/* random color */}
+        <button className={css.random__btn} onClick={handleRandomColor}>
+          <Zap size={18} strokeWidth={1.2} />
+        </button>
+      </div>
+
+      {/* color */}
+      {/* color */}
+      <div className={css.color}>
+        <div className={css.color__fill} style={{ backgroundColor: color.toHex() }}>
+          <h1 style={{ color: color.isLight() ? "black" : "white" }}> {getColorName(color.toHex()).name} </h1>
+        </div>
+        <div className={css.color__codes}>
+          <ColorCode type="hex" value={color.toHex()} />
+          <ColorCode type="rgb" value={color.toRgbString().replace("rgb(", "").replace(")", "")} />
+          <ColorCode type="hsl" value={color.toHslString().replace("hsl(", "").replace(")", "")} />
         </div>
       </div>
-      {/* random color */}
-      <button className={css.random__btn} onClick={handleRandomColor}>
-        <Zap size={18} strokeWidth={1.2} />
-      </button>
-    </div>
+    </>
   );
 }
 
