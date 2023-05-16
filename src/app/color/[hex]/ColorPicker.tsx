@@ -5,8 +5,7 @@ import css from "./style.module.css";
 import Color from "color";
 import { useRouter } from "next/navigation";
 import { Zap } from "react-feather";
-
-type Props = {};
+import { Colord, colord, random } from "colord";
 
 function isValidHex(val: string) {
   if (val.length === 0) return false;
@@ -51,9 +50,13 @@ function isVaidHexColor(hex: string) {
   }
 }
 
-function ColorPicker({}: Props) {
-  const [value, setValue] = useState("");
-  const [color, setColor] = useState<Color>(Color("red"));
+type Props = {
+  hex: string;
+};
+
+function ColorPicker({ hex }: Props) {
+  const [value, setValue] = useState(hex);
+  const [color, setColor] = useState<Colord>(colord(hex));
   const colorRef = useRef<HTMLInputElement>(null);
 
   const router = useRouter();
@@ -63,27 +66,33 @@ function ColorPicker({}: Props) {
   };
 
   const handleColorInput = (e: ChangeEvent<HTMLInputElement>) => {
-    const newColor = Color(e.target.value);
+    // const newColor = Color(e.target.value);
+    const newColor = colord(e.target.value);
     setColor(newColor);
-    setValue(newColor.hex());
+    setValue(newColor.toHex());
   };
 
   const handleTextBlur = () => {
-    setValue(color.hex());
+    setValue(color.toHex());
   };
 
   useEffect(() => {
     if (value.length > 0) {
       const val = value[0] === "#" ? String(value.slice(1)) : value;
       if (isVaidHexColor(val)) {
-        setColor(Color("#" + val));
+        setColor(colord("#" + val));
       }
     }
   }, [value]);
 
   const handleColorInputBlur = () => {
-    const hex = color.hex().replace("#", "");
+    const hex = color.toHex().replace("#", "");
     router.push("/color/" + hex);
+  };
+
+  const handleRandomColor = () => {
+    const randomColor = random();
+    router.push("/color/" + randomColor.toHex().replace("#", ""));
   };
 
   return (
@@ -97,19 +106,19 @@ function ColorPicker({}: Props) {
           onChange={handleTextInput}
           onBlur={handleTextBlur}
         />
-        <div className={css.picker__wrapper} style={{ backgroundColor: color.hex() }}>
+        <div className={css.picker__wrapper} style={{ backgroundColor: color.toHex() }}>
           <input
             className={css.picker__color}
             ref={colorRef}
             type="color"
-            value={color.hex()}
+            value={color.toHex()}
             onChange={handleColorInput}
             onBlur={handleColorInputBlur}
           />
         </div>
       </div>
       {/* random color */}
-      <button className={css.random__btn}>
+      <button className={css.random__btn} onClick={handleRandomColor}>
         <Zap size={18} strokeWidth={1.2} />
       </button>
     </div>

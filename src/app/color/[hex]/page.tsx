@@ -109,7 +109,7 @@ async function Page({ params }: Props) {
 
   return (
     <div>
-      <ColorPicker />
+      <ColorPicker hex={"#" + hex} />
 
       {/* color */}
       <div className={css.color}>
