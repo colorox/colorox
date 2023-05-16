@@ -3,12 +3,11 @@
 import css from "./style.module.css";
 import ColorCode from "./ColorCode";
 import { getColorName } from "@/app/utils/color";
-import { colord } from "colord";
 import { useColorContext } from "./colorContext";
 
 type Props = {};
 
-function Main({}: Props) {
+function Main({ }: Props) {
   const { state } = useColorContext();
   const { color } = state;
 
