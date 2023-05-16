@@ -25,12 +25,10 @@ function OptionsDropdown({ }: Props) {
   const router = useRouter();
 
   const handleSelect = (item: Option) => {
-    console.log(item)
     setValue(item.value)
   }
 
   useEffect(() => {
-    console.log("value", value)
     router.push(`/color/fd12a3/${value}`)
   }, [value])
 

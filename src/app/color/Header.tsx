@@ -7,7 +7,7 @@ function Header({ }: Props) {
     return (
         <div className={css.header}>
             <OptionsDropdown />
-            <ColorPicker urlSuffix={'/tints'} />
+            <ColorPicker />
         </div>
     )
 }

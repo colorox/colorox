@@ -1,7 +1,8 @@
 "use client";
 
 import { Colord, colord } from "colord";
-import { ReactNode, createContext, useContext, useReducer } from "react";
+import { useParams } from "next/navigation";
+import { ReactNode, createContext, useContext, useEffect, useReducer } from "react";
 
 type State = {
   color: Colord;

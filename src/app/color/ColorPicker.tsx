@@ -2,7 +2,7 @@
 
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import css from "./style.module.css";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { Zap } from "react-feather";
 import { colord, random } from "colord";
 import { useColorContext } from "./colorContext";
@@ -51,10 +51,10 @@ function isVaidHexColor(hex: string) {
 }
 
 type Props = {
-  urlSuffix: string,
+
 };
 
-function ColorPicker({ urlSuffix }: Props) {
+function ColorPicker({ }: Props) {
   const { state, dispatch } = useColorContext();
   const { color } = state;
   const [value, setValue] = useState(color.toHex());
@@ -62,12 +62,13 @@ function ColorPicker({ urlSuffix }: Props) {
   const colorRef = useRef<HTMLInputElement>(null);
   const [mounted, setMounted] = useState(false);
 
+  const router = useRouter()
+  const params = useParams();
+
   useEffect(() => {
     setMounted(true);
     setValue(color.toHex())
   }, []);
-
-  const router = useRouter();
 
   const handleTextInput = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
@@ -95,12 +96,13 @@ function ColorPicker({ urlSuffix }: Props) {
 
   const handleColorInputBlur = () => {
     const hex = color.toHex().replace("#", "");
-    router.push("/color/" + hex + urlSuffix);
+    router.push(`/color/${hex}/${params?.category}`);
   };
 
   const handleRandomColor = () => {
     const randomColor = random();
-    router.push("/color/" + randomColor.toHex().replace("#", "") + urlSuffix);
+    setValue(randomColor.toHex());
+    router.push(`/color/${randomColor.toHex().replace("#", "")}/${params?.category && params.category ? params.category : ''}`);
   };
 
   return (

@@ -1,14 +1,14 @@
 import React from "react";
-import ColorTones from "./ColorTones";
+import ColorList from "./ColorList";
 
 type Props = {
-
+  params: any,
 };
 
 function page({ }: Props) {
   return (
     <div>
-      <ColorTones />
+      <ColorList />
     </div>
   );
 }
