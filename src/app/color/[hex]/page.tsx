@@ -10,6 +10,8 @@ import { getColorName } from "@/app/utils/color";
 import { colord, extend } from "colord";
 import mixPlugin from "colord/plugins/mix";
 import harmoniesPlugin from "colord/plugins/harmonies";
+import ColorProvider from "./colorContext";
+import ColorPicker from "./ColorPicker";
 extend([mixPlugin, harmoniesPlugin]);
 
 type Props = {
@@ -104,7 +106,10 @@ async function Page({ params }: Props) {
 
   return (
     <div>
-      <Main hex={"#" + hex} />
+      <ColorProvider hex={hex}>
+        <ColorPicker />
+        <Main />
+      </ColorProvider>
 
       {/* tints */}
       <div className={css.tint}>
