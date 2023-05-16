@@ -2,7 +2,7 @@
 
 import React from 'react'
 import css from './style.module.css'
-import { useColorContext } from '../colorContext'
+import { useColorContext } from '../../colorContext'
 
 import { extend } from "colord";
 import mixPlugin from "colord/plugins/mix";

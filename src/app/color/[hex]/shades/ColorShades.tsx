@@ -2,7 +2,7 @@
 
 import React from 'react'
 import css from './style.module.css'
-import { useColorContext } from '../colorContext'
+import { useColorContext } from '../../colorContext'
 
 import { extend } from "colord";
 import mixPlugin from "colord/plugins/mix";
@@ -10,13 +10,13 @@ extend([mixPlugin]);
 
 type Props = {}
 
-function ColorTones({ }: Props) {
+function ColorShades({ }: Props) {
     const { state } = useColorContext();
     const { color } = state;
-    const tones = color.tones(7).map((c) => c.toHex());
+    const tints = color.shades(7).map((c) => c.toHex());
     return (
         <div className={css.shades}>
-            {tones.map((color, index) => (
+            {tints.map((color, index) => (
                 <div className={css.shade} style={{ backgroundColor: color }} key={index}>
                 </div>
             ))}
@@ -24,4 +24,4 @@ function ColorTones({ }: Props) {
     )
 }
 
-export default ColorTones
+export default ColorShades

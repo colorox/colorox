@@ -1,0 +1,48 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.shades {
+  height: 70vh;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  display: flex;
+}
+
+.shade {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(237, 237, 237);
+  transition: all 200ms ease-out;
+  cursor: pointer;
+}
+
+.shade:hover {
+  width: 150%;
+}
+
+.shade:nth-child(1) {
+  background-color: rgb(49, 49, 255);
+}
+
+.shade:nth-child(2) {
+  background-color: rgb(38, 38, 255);
+}
+
+.shade:nth-child(3) {
+  background-color: rgb(0, 0, 218);
+}
+
+.shade:nth-child(4) {
+  background-color: rgb(0, 0, 158);
+}
+
+.shade:nth-child(5) {
+  background-color: rgb(0, 0, 118);
+}

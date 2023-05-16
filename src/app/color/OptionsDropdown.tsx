@@ -3,8 +3,6 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Dropdown, { Option } from 'react-dropdown';
-import { ChevronDown, ChevronUp } from 'react-feather';
-// import 'react-dropdown/style.css';
 
 type Props = {}
 
@@ -32,6 +30,7 @@ function OptionsDropdown({ }: Props) {
   }
 
   useEffect(() => {
+    console.log("value", value)
     router.push(`/color/fd12a3/${value}`)
   }, [value])
 
