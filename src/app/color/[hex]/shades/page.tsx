@@ -4,6 +4,7 @@ import ColorProvider from "../colorContext";
 import { colord, extend } from "colord";
 import mixPlugin from "colord/plugins/mix";
 import ColorShadows from "./ColorShadows";
+import OptionsDropdown from "./OptionsDropdown";
 extend([mixPlugin]);
 
 type Props = {
@@ -20,7 +21,11 @@ function page({ params }: Props) {
 
   return (
     <div>
+
+
+
       <ColorProvider hex={"#" + hex}>
+        <OptionsDropdown />
         <ColorPicker urlSuffix={'/shades'} />
         <ColorShadows />
       </ColorProvider>

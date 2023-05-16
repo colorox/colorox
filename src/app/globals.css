@@ -39,7 +39,6 @@ input {
   font-family: inherit;
 }
 
-
 .layout {
   max-width: 1680px;
   width: 100%;
@@ -50,3 +49,37 @@ input {
   padding: 1rem;
 }
 
+/* style dropdown */
+.Dropdown-root {
+  width: 300px;
+  position: relative;
+}
+
+.Dropdown-control {
+  border: 1px solid red;
+  padding: 0.5rem 1rem;
+  border-radius: 99em;
+}
+
+.Dropdown-menu {
+  width: 100%;
+  position: absolute;
+  top: 100%;
+  background-color: rgb(248, 248, 248);
+  border: 1px solid black;
+}
+
+.Dropdown-title {
+  padding: 0.75rem 1rem;
+  color: rgb(176, 176, 176);
+  user-select: none;
+}
+
+.Dropdown-option {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.Dropdown-option:hover {
+  background-color: rgb(229, 229, 229);
+}
