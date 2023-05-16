@@ -41,10 +41,6 @@ export default function ColorProvider({ hex, children }: Props) {
     color: colord(hex),
   };
 
-  useEffect(() => {
-    dispatch({ type: "SET_COLOR", payload: colord(hex) });
-  }, [hex]);
-
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return <ColorContext.Provider value={{ state, dispatch }}>{children}</ColorContext.Provider>;

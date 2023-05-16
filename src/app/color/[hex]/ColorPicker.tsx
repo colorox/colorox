@@ -51,10 +51,10 @@ function isVaidHexColor(hex: string) {
 }
 
 type Props = {
-  
+  urlSuffix: string,
 };
 
-function ColorPicker({}: Props) {
+function ColorPicker({ urlSuffix }: Props) {
   const { state, dispatch } = useColorContext();
   const { color } = state;
   const [value, setValue] = useState(color.toHex());
@@ -95,12 +95,12 @@ function ColorPicker({}: Props) {
 
   const handleColorInputBlur = () => {
     const hex = color.toHex().replace("#", "");
-    router.push("/color/" + hex);
+    router.push("/color/" + hex + urlSuffix);
   };
 
   const handleRandomColor = () => {
     const randomColor = random();
-    router.push("/color/" + randomColor.toHex().replace("#", ""));
+    router.push("/color/" + randomColor.toHex().replace("#", "") + urlSuffix);
   };
 
   return (

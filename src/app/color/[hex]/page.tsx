@@ -1,11 +1,8 @@
 import Link from "next/link";
 import { Maximize2 } from "react-feather";
 import css from "./style.module.css";
-import ColorCode from "./ColorCode";
 import ColorItem from "./ColorItem";
 import Main from "./Main";
-
-import { getColorName } from "@/app/utils/color";
 
 import { colord, extend } from "colord";
 import mixPlugin from "colord/plugins/mix";
@@ -107,7 +104,7 @@ async function Page({ params }: Props) {
   return (
     <div>
       <ColorProvider hex={hex}>
-        <ColorPicker />
+        <ColorPicker urlSuffix="" />
         <Main />
       </ColorProvider>
 

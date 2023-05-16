@@ -1,33 +1,29 @@
 import React from "react";
-import Main from "../Main";
-import css from "./style.module.css";
 import ColorPicker from "../ColorPicker";
 import ColorProvider from "../colorContext";
-import { colord } from "colord";
+import { colord, extend } from "colord";
+import mixPlugin from "colord/plugins/mix";
+import ColorShadows from "./ColorShadows";
+extend([mixPlugin]);
 
 type Props = {
   params: any;
 };
 
 function page({ params }: Props) {
-  const {hex} = params;
-  const color = colord("#" + hex)
-  if(!color.isValid()) {
-    throw new Error('Invalid Color')
+  const { hex } = params;
+  const color = colord("#" + hex);
+  if (!color.isValid()) {
+    throw new Error("Invalid Color");
   }
+
 
   return (
     <div>
-      <ColorProvider color={color} >
-        <ColorPicker />
+      <ColorProvider hex={"#" + hex}>
+        <ColorPicker urlSuffix={'/shades'} />
+        <ColorShadows />
       </ColorProvider>
-      <div className={css.shades}>
-        <div className={css.shade} > </div>
-        <div className={css.shade}> </div>
-        <div className={css.shade}> </div>
-        <div className={css.shade}> </div>
-        <div className={css.shade}> </div>
-      </div>
     </div>
   );
 }
