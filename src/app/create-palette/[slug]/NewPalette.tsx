@@ -17,18 +17,22 @@ const reorder = (list, startIndex, endIndex) => {
 
 const grid = 8;
 
-const getItemStyle = (isDragging : boolean, draggableStyle) => ({
-  // some basic styles to make the items look a bit nicer
-  userSelect: 'none',
-  padding: grid * 2,
-  marginRight: 10,
-  // change background colour if dragging
-  background: isDragging ? 'lightgreen' : 'grey',
-  // styles we need to apply on draggables
-  ...draggableStyle,
-});
+const getItemStyle = (hex: string, isDragging: boolean, style) => {
+  if (style.transform) {
+    const value = style.transform.match(/\((.*?)\)/)[1].split(',')[0];
+    return {
+      ...style,
+      transform: `translate(${value}, 0px)`,
+      backgroundColor: hex,
+    };
+  }
+  else {
+    return { ...style, backgroundColor: hex, };
+  }
+};
 
-const getListStyle = (isDraggingOver : boolean) => ({
+
+const getListStyle = (isDraggingOver: boolean) => ({
   background: isDraggingOver ? 'lightblue' : 'lightgrey',
   display: 'flex',
   padding: grid,
@@ -40,25 +44,30 @@ type Props = {}
 type Item = {
   id: number,
   content: string,
+  hex: string,
 }
 
 function NewPalette({ }: Props) {
   const [items, setItems] = useState([
     {
       id: 1,
-      content: 'good'
+      content: 'good',
+      hex: '#fcba03'
     },
     {
       id: 2,
-      content: 'nice'
+      content: 'nice',
+      hex: '#24fc03'
     },
     {
       id: 3,
-      content: 'best'
+      content: 'best',
+      hex: '#ff0095'
     },
     {
       id: 4,
-      content: 'he'
+      content: 'he',
+      hex: '#0d00ff'
     },
   ])
 
@@ -96,6 +105,7 @@ function NewPalette({ }: Props) {
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                       style={getItemStyle(
+                        item.hex,
                         snapshot.isDragging,
                         provided.draggableProps.style
                       )}
