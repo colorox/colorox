@@ -1,0 +1,27 @@
+.palette {
+  height: 50vh;
+  margin-top: 2rem;
+  display: flex;
+}
+
+.palette__color {
+  width: 100%;
+  min-width: 200px;
+  min-height: 200px;
+}
+
+.palette__color:nth-child(1) {
+  background-color: red;
+}
+
+.palette__color:nth-child(2) {
+  background-color: rgb(0, 213, 255);
+}
+
+.palette__color:nth-child(3) {
+  background-color: rgb(255, 0, 123);
+}
+
+.palette__color:nth-child(4) {
+  background-color: rgb(255, 209, 44);
+}
