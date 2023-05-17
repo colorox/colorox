@@ -26,11 +26,8 @@ function OptionsDropdown({ }: Props) {
 
   const handleSelect = (item: Option) => {
     setValue(item.value)
-  }
-
-  useEffect(() => {
     router.push(`/color/fd12a3/${value}`)
-  }, [value])
+  }
 
   return (
     <div>

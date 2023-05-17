@@ -33,13 +33,14 @@ function reducer(state: State, action: Action) {
 }
 
 type Props = {
-  hex: string;
   children: ReactNode;
 };
 
-export default function ColorProvider({ hex, children }: Props) {
+export default function ColorProvider({ children }: Props) {
+  const {hex} = useParams()
+
   const initialState: State = {
-    color: colord(hex),
+    color: colord("#" + hex),
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);

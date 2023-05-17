@@ -11,7 +11,7 @@ function layout({ children }: Props) {
     return (
         <div className={css.layout}>
             <div className={css.content}>
-                <ColorProvider hex="#242424">
+                <ColorProvider>
                     <Header />
                     {children}
                 </ColorProvider>

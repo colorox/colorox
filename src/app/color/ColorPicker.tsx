@@ -65,6 +65,8 @@ function ColorPicker({ }: Props) {
   const router = useRouter()
   const params = useParams();
 
+  console.log(params)
+
   useEffect(() => {
     setMounted(true);
     setValue(color.toHex())
@@ -96,13 +98,13 @@ function ColorPicker({ }: Props) {
 
   const handleColorInputBlur = () => {
     const hex = color.toHex().replace("#", "");
-    router.push(`/color/${hex}/${params?.category}`);
+    router.push(`/color/${hex}`);
   };
 
   const handleRandomColor = () => {
     const randomColor = random();
     setValue(randomColor.toHex());
-    router.push(`/color/${randomColor.toHex().replace("#", "")}/${params?.category && params.category ? params.category : ''}`);
+    router.push(`/color/${randomColor.toHex().replace("#", "")}`);
   };
 
   return (
