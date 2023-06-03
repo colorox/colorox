@@ -26,16 +26,14 @@ const getItemStyle = (hex: string, isDragging: boolean, style) => {
       backgroundColor: hex,
     };
   }
-  else {
+  else {3
     return { ...style, backgroundColor: hex, };
   }
 };
 
 
 const getListStyle = (isDraggingOver: boolean) => ({
-  background: isDraggingOver ? 'lightblue' : 'lightgrey',
   display: 'flex',
-  padding: grid,
   overflow: 'auto',
 });
 
@@ -86,6 +84,13 @@ function NewPalette({ }: Props) {
     setItems(updatedItems);
   }
 
+  const handleClick = (index: number) => {
+    console.log("clicked")
+    // const newItems = [...items];
+    // newItems[index].hex = "tomato"
+    // setItems(newItems)
+  }
+
 
   return (
     <div>
@@ -110,6 +115,7 @@ function NewPalette({ }: Props) {
                         provided.draggableProps.style
                       )}
                       className={css.palette__color}
+                      onClick={() => handleClick(index)}
                     >
                       {item.id}
                     </div>

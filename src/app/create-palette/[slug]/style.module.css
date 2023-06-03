@@ -6,8 +6,7 @@
 
 .palette__color {
   width: 100%;
-  min-width: 200px;
-  min-height: 200px;
+  height: calc(100vh - 70px);
 }
 
 .palette__color:nth-child(1) {
