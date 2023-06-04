@@ -4,10 +4,11 @@ import { useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd'
 
 import css from './style.module.css'
+import { Copy, Move, Grid } from 'react-feather';
 
 
 // a little function to help us with reordering the result
-const reorder = (list, startIndex, endIndex) => {
+const reorder = (list: Array<any>, startIndex: number, endIndex: number) => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
   result.splice(endIndex, 0, removed);
@@ -26,7 +27,8 @@ const getItemStyle = (hex: string, isDragging: boolean, style) => {
       backgroundColor: hex,
     };
   }
-  else {3
+  else {
+    3
     return { ...style, backgroundColor: hex, };
   }
 };
@@ -114,10 +116,14 @@ function NewPalette({ }: Props) {
                         snapshot.isDragging,
                         provided.draggableProps.style
                       )}
-                      className={css.palette__color}
+                      className={`${css.palette__color} ${css.color}`}
                       onClick={() => handleClick(index)}
                     >
-                      {item.id}
+                      <div className={`${css.color__options}`}>
+                        <button className={css.color__btn}> <Move size={18} strokeWidth={1.5} />  </button>
+                        <button className={css.color__btn}> <Copy size={18} strokeWidth={1.5} />  </button>
+                        <button className={css.color__btn}> <Grid size={18} strokeWidth={1.5} />  </button>
+                      </div>
                     </div>
                   )}
                 </Draggable>

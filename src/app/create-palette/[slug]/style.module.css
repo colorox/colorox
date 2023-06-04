@@ -1,5 +1,5 @@
 .palette {
-  height: 50vh;
+  height: 40vh;
   margin-top: 2rem;
   display: flex;
 }
@@ -23,4 +23,30 @@
 
 .palette__color:nth-child(4) {
   background-color: rgb(255, 209, 44);
+}
+
+.color {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.color__options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  opacity: 0;
+}
+
+.color:hover .color__options {
+  opacity: 1;
+}
+
+.color__btn {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.color__btn:hover {
+  background-color: rgba(255, 255, 255, 0.4);
 }
