@@ -4,8 +4,10 @@ import { useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd'
 
 import css from './style.module.css'
-import { Copy, Move, Unlock, Lock, Heart, X, Trash } from 'react-feather';
-import { getIconColor } from '@/app/utils/color';
+import { Copy, Move, Unlock, Lock, Heart, X, Trash, Grid } from 'react-feather';
+import { getColorName, getIconColor } from '@/app/utils/color';
+import { colord } from 'colord';
+import { customToast } from '@/app/toast';
 
 
 // a little function to help us with reordering the result
@@ -101,6 +103,8 @@ function NewPalette({ }: Props) {
 
   return (
     <div>
+       
+
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable" direction="horizontal" >
           {(provided, snapshot) => (
@@ -121,7 +125,7 @@ function NewPalette({ }: Props) {
                         snapshot.isDragging,
                         provided.draggableProps.style
                       )}
-                      className={`${css.palette__color} ${css.color}`}
+                      className={css['palette__color-wrapper']}
                       onClick={() => handleClick(index)}
                     >
                       <PaletteItem item={item} />
@@ -147,14 +151,42 @@ const PaletteItem = ({ item }: PaletteItemProps) => {
   const { id, hex, content } = item;
   const [isLocked, setLocked] = useState(false);
 
+  const color = colord(hex);
+
+  const copyColor = () => {
+    navigator.clipboard.writeText(color.toHex())
+    customToast("Color copied to the clipbaord!")
+  }
+
+  const colorName = getColorName(color.toHex());
+
+  console.log(color)
+
+
   return (
-    <div className={`${css.color__options}`} style={{ backgroundColor: hex, color: 'black' }}>
-      <button className={css.color__btn}> <Trash size={18} strokeWidth={1.5} />  </button>
-      <button className={css.color__btn}> <Move size={18} strokeWidth={1.5} />  </button>
-      <button className={css.color__btn}> <Heart size={18} strokeWidth={1.5} />  </button>
-      <button className={css.color__btn}> <Copy size={18} strokeWidth={1.5} />  </button>
-      <button className={css.color__btn} onClick={() => setLocked(!isLocked)} >
-        {isLocked ? <Lock size={18} strokeWidth={1.5} /> : <Unlock size={18} strokeWidth={1.5} />}
+    <div className={`${css.palette__color} ${css.color}`}>
+      <div className={`${css.color__options}`} style={{ backgroundColor: hex, color: "black" }}>
+        <button className={css.color__btn}>
+          <Trash size={18} strokeWidth={1.5} />
+        </button>
+        <button className={css.color__btn}>
+          <Move size={18} strokeWidth={1.5} />
+        </button>
+        <button className={css.color__btn}>
+          <Grid size={18} strokeWidth={1.5} />
+        </button>
+        <button className={css.color__btn}>
+          <Heart size={18} strokeWidth={1.5} />
+        </button>
+        <button className={css.color__btn} onClick={() => copyColor()} >
+          <Copy size={18} strokeWidth={1.5} />
+        </button>
+        <button className={`${css.color__btn} ${isLocked ? css['color__btn--locked'] : ''}`} onClick={() => setLocked(!isLocked)} >
+          {isLocked ? <Lock size={18} strokeWidth={1.5} /> : <Unlock size={18} strokeWidth={1.5} />}
+        </button>
+      </div>
+      <button className={css.color__hex}>
+        {color.toHex().replace("#", "")}
       </button>
     </div>
   )
