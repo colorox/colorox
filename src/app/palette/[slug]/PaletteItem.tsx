@@ -3,7 +3,7 @@
 import { customToast } from "@/app/toast";
 import css from "./style.module.css";
 import React, { MouseEvent } from "react";
-import { getIconColor } from "@/app/utils/color";
+import { getIconColor } from "@/app/_utils/color";
 import Color from "color";
 import { MoreHorizontal, MoreVertical } from "react-feather";
 

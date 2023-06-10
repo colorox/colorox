@@ -2,7 +2,7 @@
 
 import css from "./style.module.css";
 import ColorCode from "./ColorCode";
-import { getColorName } from "@/app/utils/color";
+import { getColorName } from "@/app/_utils/color";
 import { useColorContext } from "../colorContext";
 
 type Props = {};

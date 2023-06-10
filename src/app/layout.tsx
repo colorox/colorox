@@ -1,6 +1,6 @@
 import { Toaster } from "react-hot-toast";
-import Navbar from "./components/Navbar";
-import Toast from "./components/Toast";
+import Navbar from "./_components/Navbar";
+import Toast from "./_components/Toast";
 import "./globals.css";
 import { Poppins } from "next/font/google";
 

@@ -2,7 +2,7 @@ import React from "react";
 import css from "./style.module.css";
 import PaletteItem from "./PaletteItem";
 import PaletteAction from "./PaletteAction";
-import Palette from "@/app/components/Palette";
+import Palette from "@/app/_components/Palette";
 
 type Props = {};
 

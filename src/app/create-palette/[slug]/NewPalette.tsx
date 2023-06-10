@@ -5,7 +5,7 @@ import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd'
 
 import css from './style.module.css'
 import { Copy, Move, Unlock, Lock, Heart, X, Trash, Grid } from 'react-feather';
-import { getColorName, getIconColor } from '@/app/utils/color';
+import { getColorName, getIconColor } from '@/app/_utils/color';
 import { colord } from 'colord';
 import { customToast } from '@/app/toast';
 
