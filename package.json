@@ -23,7 +23,7 @@
     "colord": "^2.9.3",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.1",
-    "mongoose": "^7.2.2",
+    "mongoose": "^6.11.2",
     "nearest-color": "^0.4.4",
     "next": "13.4.1",
     "react": "18.2.0",
