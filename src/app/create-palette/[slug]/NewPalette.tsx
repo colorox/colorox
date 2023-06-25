@@ -103,8 +103,6 @@ function NewPalette({ }: Props) {
 
   return (
     <div>
-       
-
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable" direction="horizontal" >
           {(provided, snapshot) => (

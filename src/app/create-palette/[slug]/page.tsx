@@ -1,5 +1,6 @@
 import React from 'react'
 import NewPalette from './NewPalette'
+import PaletteMenu from './PaletteMenu'
 
 type Props = {
   params: any
@@ -11,6 +12,7 @@ function page({params}: Props) {
 
   return (
     <div>
+      <PaletteMenu />
       <NewPalette />
     </div>
   )
