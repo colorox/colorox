@@ -21,8 +21,6 @@ a {
 }
 
 button {
-  display: flex;
-  align-items: center;
   font-family: inherit;
   background-color: transparent;
   outline: transparent;
